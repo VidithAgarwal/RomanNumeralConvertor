@@ -24,7 +24,7 @@ const RomanInput = () => {
       <Divider size="L" />
       <Well width="100%" maxWidth="size-4600" UNSAFE_style={{ textAlign: 'center' }}>
         <Text marginBottom="size-200">
-          Enter an integer to convert it to a Roman numeral.
+          Enter an integer (1 to 3999) to convert it to a Roman numeral.
         </Text>
       </Well>
 
