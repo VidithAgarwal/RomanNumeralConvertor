@@ -7,6 +7,6 @@ export const isInRange = (num) => {
 
 export const validateInput = (input) => {
     if (!input || isNaN(input) || (/[^0-9-]/.test(input))) {
-        throw createError(400, 'Invalid input: Please provide a numeric value.');
+        throw createError(400, `Invalid input ${input} : Please provide a numeric value.`);
     }
 };
