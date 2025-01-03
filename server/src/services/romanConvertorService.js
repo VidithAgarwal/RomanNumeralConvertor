@@ -1,5 +1,6 @@
 import { createError } from '../middleware/errorMiddleware.js';
 import { isInRange } from "../utils/validator.js";
+import logger from '../utils/logger.js';
 
 
 export const intToRoman = (num) => {
@@ -25,14 +26,15 @@ export const intToRoman = (num) => {
       ['I', 1],
     ];
     let result = '';
+    let numCopy = num;
     logger.info('Starting Roman numeral conversion', { num });
     romanNumeralMap.forEach(([roman, value]) => {
-      while (num >= value) {
+      while (numCopy >= value) {
         result += roman;
-        num -= value;
+        numCopy -= value;
       }
     });
-    logger.info('CompletedRoman numeral conversion', { num, result });
+    logger.info('Completed Roman numeral conversion', { num, result });
     return result;
   };
   
