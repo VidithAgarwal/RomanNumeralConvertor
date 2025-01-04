@@ -5,17 +5,15 @@ import errorMiddleware from './middleware/errorMiddleware.js';
 import romanConvertorRoute from './routes/romanConvertorRoute.js';
 import { metricsMiddleware, metricsRoute } from './middleware/metrics.js';
 
-
 const app = express();
 
-app.use(metricsMiddleware);
-
-
+// Enable CORS with environment-specific configuration
 app.use(cors());
+
+// JSON parsing
 app.use(express.json());
 
-app.use(bodyParser.json());
-
+// Headers caching
 app.use((req, res, next) => {
     res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.set('Pragma', 'no-cache');
@@ -24,10 +22,14 @@ app.use((req, res, next) => {
     next();
   });
 
-
-app.use('/romannumeral', romanConvertorRoute);
+// Metrics middleware and route
+app.use(metricsMiddleware);
 app.get('/metrics', metricsRoute);
 
+// Roman numeral conversion route
+app.use('/romannumeral', romanConvertorRoute);
+
+// Error handling middleware
 app.use(errorMiddleware);
 
 export default app; 
