@@ -4,25 +4,29 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-    restart: always
+      - "8080:8080" # Map the backend service to port 8080
+    restart: always # Automatically restart the container if it stops
+    volumes:
+      - ./logs:/app/logs # Map logs directory for persistence
 
   frontend:
     build:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "80:80" # Map the frontend service to port 80
     restart: always
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     restart: always
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus
-    command: --config.file=/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml # Bind-mount configuration file
+      - prometheus-data:/prometheus # Use named volumes for persistent storage
+    command: --config.file=/etc/prometheus/prometheus.yml # Explicitly define configuration file
     ports:
-      - "9090:9090"
+      - "9090:9090" # Map Prometheus web interface to port 9090
+
 volumes:
-  prometheus-data:
+  backend-logs: # Named volume for backend logs
+  prometheus-data: # Named volume for Prometheus data

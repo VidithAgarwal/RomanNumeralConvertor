@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <Provider theme={theme} colorScheme={currentTheme}>
-      <View backgroundColor="gray-200" height="100vh" justifyContent="center" alignItems="center" width="100vw">
+      <View minHeight="100vh" backgroundColor="gray-200" justifyContent="center" alignItems="center" width="100vw" minWidth={'100vw'} maxWidth={'6000px'}>
         <RomanConverter setTheme={setTheme} currentTheme={currentTheme} />
       </View>
     </Provider>
