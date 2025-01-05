@@ -1,147 +1,123 @@
-**Roman Numeral Converter**
-===========================
+`# **Roman Numeral Converter**
 
-A full-stack web application that converts integers (1 to 3999) into Roman numerals. Built with React for the frontend and Node.js with Express for the backend, this project is designed for scalability, maintainability, and monitoring. The app includes robust error handling, Prometheus-based metrics, and comprehensive test coverage.
+A full-stack web application designed to convert integers (1 to 3999) into Roman numerals. Built using React for the frontend and Node.js with Express for the backend, this project adheres to clean architecture principles, includes robust error handling, and provides monitoring via Prometheus metrics.
+
+---
+
+## **Table of Contents**
+
+1. [Features](#features)
+2. [Roman Numeral Specification](#roman-numeral-specification)
+3. [How to Build and Run the Project](#how-to-build-and-run-the-project)
+4. [Environment Variables (`.env` Setup)](#environment-variables-env-setup)
+5. [Engineering and Testing Methodology](#engineering-and-testing-methodology)
+6. [Packaging Layout](#packaging-layout)
+7. [Dependency Attribution](#dependency-attribution)
+8. [Tests](#tests)
+9. [Error Handling](#error-handling)
+10. [Logging](#logging)
+11. [Inline Documentation](#inline-documentation)
+
+---
+
+## **Features**
+
+- **Roman Numeral Conversion**: Converts integers between 1 and 3999 to Roman numerals.
+- **Error Handling**: Comprehensive input validation and detailed error reporting.
+- **Metrics and Monitoring**: Integrated Prometheus metrics for tracking requests and application performance.
+- **Testing**: Unit and integration tests to ensure reliability.
+- **User Experience**: Light and dark themes for accessibility and usability.
+
+---
+
+## **Roman Numeral Specification**
+
+The Roman numeral system is a numeral system originating in ancient Rome, employing combinations of letters from the Latin alphabet: **I, V, X, L, C, D, M**. Each numeral represents a specific value:
+- **I = 1**, **V = 5**, **X = 10**, **L = 50**, **C = 100**, **D = 500**, **M = 1000**.
+
+Numbers are formed by combining these numerals according to specific rules:
+- Larger numerals before smaller ones indicate addition (e.g., VI = 6).
+- Smaller numerals before larger ones indicate subtraction (e.g., IV = 4).
+
+For detailed specifications, refer to [Wikipedia - Roman Numerals](https://en.wikipedia.org/wiki/Roman_numerals).
+
+---
+
+## **How to Build and Run the Project**
+
+### **1. Prerequisites**
+
+Ensure the following are installed:
+- **Node.js** (v16 or higher): [Download Node.js](https://nodejs.org/)
+- **Git**: [Download Git](https://git-scm.com/)
+- **Docker Desktop**: [Download Docker Desktop](https://www.docker.com/products/docker-desktop)
+- **Prometheus** (for monitoring): [Download Prometheus](https://prometheus.io/download/)
+- **Jest** (globally installed for tests):
+  ```bash
+  npm install -g jest `
 
 * * * * *
-
-**Table of Contents**
----------------------
-
-1.  [Features](#features)
-2.  [How to Build and Run the Project](#how-to-build-and-run-the-project)
-3.  [Environment Variables (`.env` Setup)](#environment-variables-env-setup)
-4.  [Engineering and Testing Methodology](#engineering-and-testing-methodology)
-5.  [Packaging Layout](#packaging-layout)
-6.  [Dependency Attribution](#dependency-attribution)
-7.  [Tests](#tests)
-8.  [Error Handling](#error-handling)
-9.  [Inline Documentation](#inline-documentation)
-
-* * * * *
-
-**Features**
-------------
-
--   **Roman Numeral Conversion**: Converts integers (1 to 3999) to Roman numerals.
--   **Error Handling**: Comprehensive validation for invalid, out-of-range, or malformed inputs.
--   **Monitoring**: Prometheus metrics for HTTP requests, response times, and conversion success/failure.
--   **Testing**: Includes unit and integration tests for backend services.
--   **Customizable Themes**: Light and dark themes for better user experience.
-
-* * * * *
-
-**How to Build and Run the Project**
-------------------------------------
-
-### **1\. Prerequisites**
-
-Before starting, ensure the following are installed:
-
--   **Node.js** (v16 or higher): [Download Node.js](https://nodejs.org/)
--   **Git**: [Download Git](https://git-scm.com/)
--   **Docker Desktop**: Download Docker Desktop
--   **Prometheus** (for monitoring): Download Prometheus
--   **Jest** (globally installed for tests):
-
-    ```bash
-
-        npm install -g jest
-
-    ```
 
 ### **2\. Clone the Repository**
 
-1.  Open a terminal or command prompt.
-2.  Clone the repository:
+1.  Clone the repository:
 
     ```bash
 
-    git clone https://github.com/your-username/roman-numeral-converter.git
-    
-    ```
 
-3.  Navigate to the project directory:
+    git clone https://github.com/VidithAgarwal/RomanNumeralConvertor.git `
 
-    bash
+2.  Navigate to the project directory:
 
-    Copy code
+    ```bash
 
-    `cd roman-numeral-converter`
+
+    cd roman-numeral-converter `
 
 * * * * *
 
 ### **3\. Environment Variables (`.env` Setup)**
 
-The project uses environment variables for configuration. Create `.env` files in both the **backend (`server`)** and **frontend (`client`)** directories.
-
 #### **Backend (`server/.env`)**
 
-Navigate to the `server` directory and create a `.env` file:
+Create a `.env` file in the `server` directory:
 
-bash
+```env
 
-Copy code
+NODE_ENV=development
+PORT=8080
 
-`cd server
-touch .env`
-
-Add the following variables:
-
-env
-
-Copy code
-
-`NODE_ENV=development
-PORT=8080`
-
--   **`NODE_ENV`**: Environment type (`development` or `production`).
--   **`PORT`**: Port for the backend server.
+```
 
 #### **Frontend (`client/.env`)**
 
-Navigate to the `client` directory and create a `.env` file:
+Create a `.env` file in the `client` directory:
 
-bash
+```env
 
-Copy code
+VITE_API_URL=http://localhost:8080
 
-`cd client
-touch .env`
-
-Add the following variables:
-
-env
-
-Copy code
-
-`VITE_API_URL=http://localhost:8080`
-
--   **`VITE_API_URL`**: URL for the backend API.
+```
 
 * * * * *
 
 ### **4\. Running with Docker**
 
-1.  **Ensure Docker Desktop is Running.**
+1.  Ensure Docker Desktop is running.
 
-2.  **Build and Run the Application:**
+2.  Build and run the application:
 
-    bash
+    ```bash
 
-    Copy code
+    docker-compose up --build `
 
-    `docker-compose up --build`
+3.  Access the application:
 
-3.  **Access the Application:**
-
-    -   **Frontend**: <http://localhost>
+    -   **Frontend**: <http://localhost:80>
     -   **Backend**: <http://localhost:8080>
-4.  **Stop the Application:** Press `Ctrl + C` in the terminal and run:
+4.  Stop the application:
 
-    bash
-
-    Copy code
+    ```bash
 
     `docker-compose down`
 
@@ -151,59 +127,37 @@ Copy code
 
 #### **Frontend**
 
-1.  Navigate to the `client` directory:
+1.  Navigate to the `client` directory and install dependencies:
 
-    bash
+    ```bash
 
-    Copy code
+    `cd client
+    npm install`
 
-    `cd client`
+2.  Start the development server:
 
-2.  Install dependencies:
-
-    bash
-
-    Copy code
-
-    `npm install`
-
-3.  Start the development server:
-
-    bash
-
-    Copy code
+    ```bash
 
     `npm run dev`
 
-4.  Open <http://localhost:5173>.
+3.  Access the frontend at <http://localhost:5173>.
 
 #### **Backend**
 
-1.  Open a new terminal and navigate to the `server` directory:
+1.  Navigate to the `server` directory and install dependencies:
 
-    bash
+    ```bash
 
-    Copy code
+    `cd server
+    npm install`
 
-    `cd server`
+2.  Start the backend server:
 
-2.  Install dependencies:
-
-    bash
-
-    Copy code
-
-    `npm install`
-
-3.  Start the backend server:
-
-    bash
-
-    Copy code
+    ```bash
 
     `npm start`
 
-4.  Access the backend at <http://localhost:8080>.
+3.  Access the backend at <http://localhost:8080>.
 
 * * * * *
 
@@ -212,57 +166,59 @@ Copy code
 
 ### **Engineering**
 
--   **Clean Architecture**: Modular design with clear separation of concerns (e.g., routes, controllers, services).
--   **Metrics and Monitoring**: Prometheus client for tracking HTTP requests, response times, and conversion success rates.
--   **Robust Error Handling**: Centralized middleware for capturing and logging errors.
+-   **Clean Architecture**: Modular design with separate layers for routes, controllers, services, and utilities.
+-   **Prometheus Monitoring**: Metrics for request counts, response latency, and conversion success/failure.
+-   **Centralized Error Handling**: Middleware for logging and responding to errors.
 
 ### **Testing**
 
--   **Unit Tests**: Test individual modules and services using Jest.
--   **Integration Tests**: Validate interactions between endpoints and business logic.
--   **Test Coverage**:
-    -   Validate Roman numeral conversions.
-    -   Ensure error handling for invalid inputs.
-    -   Test API responses and status codes.
+-   **Unit Tests**: Isolate and test individual components like services and utilities.
+-   **Integration Tests**: Validate the interaction between routes, controllers, and services.
+-   **Test Methodology**:
+    1.  **Input Validation**:
+        -   Verify that invalid inputs (e.g., non-numeric, out-of-range values) are handled correctly.
+        -   Ensure valid inputs are processed without errors.
+    2.  **Response Validation**:
+        -   Check for correct HTTP status codes (`200`, `400`, `500`).
+        -   Validate the accuracy of returned Roman numerals.
+    3.  **Metrics Testing**:
+        -   Ensure Prometheus metrics update correctly for successful and failed requests.
 
 * * * * *
 
-**Packaging Layout**
---------------------
+# Packaging Layout
 
-plaintext
-
-Copy code
-
-`RomanConverter/
-├── client/               # Frontend React application
-│   ├── public/           # Public assets
-│   ├── src/              # React components, styles, and services
-│   └── package.json      # Frontend dependencies
-├── server/               # Backend Express application
+```plaintext
+RomanConverter/
+├── client/                   # Frontend React application
+│   ├── public/               # Static assets (e.g., index.html)
+│   ├── src/                  # React components and styles
+│   │   ├── components/       # Reusable React components
+│   │   ├── services/         # API integration logic
+│   └── package.json          # Frontend dependencies
+├── server/                   # Backend Express application
 │   ├── src/
-│   │   ├── controllers/  # Request handling logic
-│   │   ├── routes/       # API endpoints
-│   │   ├── middleware/   # Metrics and error handling
-│   │   ├── utils/        # Utilities (e.g., logger)
-│   │   └── tests/        # Unit and integration tests
-│   ├── package.json      # Backend dependencies
-├── docker-compose.yml    # Docker Compose configuration
-└── README.md             # Project documentation`
+│   │   ├── controllers/      # Request handlers
+│   │   ├── routes/           # API routes
+│   │   ├── middleware/       # Metrics and error handling
+│   │   ├── utils/            # Logging and validators
+│   │   └── tests/            # Unit and integration tests
+|   |── .env
+|   |── Dockerfile
+│   ├── package.json          # Backend dependencies
+├── prometheus.yml            # Prometheus configuration
+├── docker-compose.yml        # Docker Compose configuration
+└── README.md                 # Documentation
+
+```
 
 * * * * *
 
 **Dependency Attribution**
 --------------------------
 
-### **Frontend**
-
 -   **React**: [React Documentation](https://reactjs.org/)
 -   **Adobe React Spectrum**: [React Spectrum Docs](https://react-spectrum.adobe.com/)
--   **Vite**: [Vite Documentation](https://vitejs.dev/)
-
-### **Backend**
-
 -   **Express.js**: [Express Documentation](https://expressjs.com/)
 -   **Prometheus Client**: [Prometheus Node.js Client](https://github.com/siimon/prom-client)
 -   **Winston**: [Winston Logger Documentation](https://github.com/winstonjs/winston)
@@ -276,28 +232,24 @@ Copy code
 
 1.  Navigate to the `server` directory:
 
-    bash
-
-    Copy code
+    ```bash
 
     `cd server`
 
 2.  Run the tests:
 
-    bash
-
-    Copy code
+    ```bash
 
     `npm test`
 
-### **Test Cases**
+### **Test Coverage**
 
--   **Unit Tests**:
-    -   Validate Roman numeral conversions.
-    -   Ensure proper input validation.
--   **Integration Tests**:
-    -   Validate API endpoints with both valid and invalid inputs.
-    -   Test HTTP status codes and responses.
+1.  **Unit Tests**:
+    -   Test individual services like Roman numeral conversion.
+    -   Validate input and range checks.
+2.  **Integration Tests**:
+    -   Test full API behavior with valid and invalid inputs.
+    -   Ensure correct metrics are updated after requests.
 
 * * * * *
 
@@ -307,11 +259,25 @@ Copy code
 1.  **Input Validation**:
 
     -   Ensures inputs are non-null, numeric, and within the valid range (1 to 3999).
-2.  **Centralized Error Middleware**:
+2.  **Centralized Middleware**:
 
-    -   Logs errors using Winston.
-    -   Sends structured error responses with appropriate HTTP status codes.
-3.  **Examples**:
+    -   Logs errors and sends appropriate responses (e.g., `400` for invalid inputs, `500` for server errors).
 
-    -   **Invalid Input**: Returns `400` with an error message.
-    -   **Server Error**: Returns `500` with a generic error message.
+* * * * *
+
+**Logging**
+-----------
+
+The application uses **Winston** for structured and customizable logging.
+
+-   **Development**: Logs both `info` and `error` levels.
+-   **Production**: Logs only `error` level to avoid clutter.
+
+### **Log Files**
+
+-   **`logs/combined.log`**: Contains all logs in development.
+-   **`logs/error.log`**: Stores error logs in both development and production.
+
+### **Suppression in Tests**
+
+Winston logs are suppressed during tests to avoid unnecessary output.
