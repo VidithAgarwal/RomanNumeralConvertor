@@ -53,8 +53,12 @@ Ensure the following are installed:
 - **Docker Desktop**: [Download Docker Desktop](https://www.docker.com/products/docker-desktop)
 - **Prometheus** (for monitoring): [Download Prometheus](https://prometheus.io/download/)
 - **Jest** (globally installed for tests):
+
   ```bash
-  npm install -g jest `
+
+  npm install -g jest 
+
+  ```
 
 * * * * *
 
@@ -65,14 +69,18 @@ Ensure the following are installed:
     ```bash
 
 
-    git clone https://github.com/VidithAgarwal/RomanNumeralConvertor.git `
+    git clone https://github.com/VidithAgarwal/RomanNumeralConvertor.git 
+
+    ```
 
 2.  Navigate to the project directory:
 
     ```bash
 
 
-    cd roman-numeral-converter `
+    cd roman-numeral-converter
+
+    ```
 
 * * * * *
 
@@ -109,17 +117,22 @@ VITE_API_URL=http://localhost:8080
 
     ```bash
 
-    docker-compose up --build `
+    docker-compose up --build
+
+    ```
 
 3.  Access the application:
 
     -   **Frontend**: <http://localhost:80>
     -   **Backend**: <http://localhost:8080>
+
 4.  Stop the application:
 
     ```bash
 
-    `docker-compose down`
+    docker-compose down
+
+    ```
 
 * * * * *
 
@@ -131,14 +144,18 @@ VITE_API_URL=http://localhost:8080
 
     ```bash
 
-    `cd client
-    npm install`
+    cd client
+    npm install
+
+    ```
 
 2.  Start the development server:
 
     ```bash
 
-    `npm run dev`
+    npm run dev
+
+    ```
 
 3.  Access the frontend at <http://localhost:5173>.
 
@@ -148,14 +165,18 @@ VITE_API_URL=http://localhost:8080
 
     ```bash
 
-    `cd server
-    npm install`
+    cd server
+    npm install
+
+    ```
 
 2.  Start the backend server:
 
     ```bash
 
-    `npm start`
+    npm start
+
+    ```
 
 3.  Access the backend at <http://localhost:8080>.
 
@@ -234,14 +255,17 @@ RomanConverter/
 
     ```bash
 
-    `cd server`
+    cd server
+
+    ```
 
 2.  Run the tests:
 
     ```bash
 
-    `npm test`
+    npm test
 
+    ```
 ### **Test Coverage**
 
 1.  **Unit Tests**:
