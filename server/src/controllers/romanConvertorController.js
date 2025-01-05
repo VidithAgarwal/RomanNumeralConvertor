@@ -2,6 +2,7 @@ import { convertIntegerToRoman } from '../services/romanConvertorService.js';
 import { validateInput } from '../utils/validator.js';
 import logger from '../utils/logger.js';
 import { trackSuccessfulConversion, trackFailedConversion } from '../middleware/metrics.js';
+import { createError } from '../middleware/errorMiddleware.js';
 /**
  * GET /romannumeral
  * 
@@ -14,7 +15,7 @@ import { trackSuccessfulConversion, trackFailedConversion } from '../middleware/
 export const getRomanNumeral = (req, res, next) => {
   logger.info('Received request for Roman numeral conversion', { query: req.query });
   try {
-    const query = req.query.query;
+    const query = req.query.query?.trim()
 
     // Validate the input
     validateInput(query);

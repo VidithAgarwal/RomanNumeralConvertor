@@ -1,4 +1,22 @@
 import { convertIntegerToRoman } from '../src/services/romanConvertorService.js';
+import { jest } from '@jest/globals';
+
+import logger from '../src/utils/logger.js';
+
+
+beforeAll(() => {
+  jest.spyOn(logger, 'info').mockImplementation(() => {});
+  jest.spyOn(logger, 'error').mockImplementation(() => {});
+  jest.spyOn(logger, 'warn').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  logger.info.mockRestore();
+  logger.error.mockRestore();
+  logger.warn.mockRestore();
+});
+
+
 
 describe('Roman Numeral Conversion Tests', () => {
   // Valid conversions
@@ -56,44 +74,44 @@ describe('Roman Numeral Conversion Tests', () => {
 
   // Invalid inputs
   test('Throw error for invalid input (4000)', () => {
-    expect(() => convertIntegerToRoman(4000)).toThrow('Input must be between 1 and 3999');
+    expect(() => convertIntegerToRoman(4000)).toThrow('Input 4000 must be between 1 and 3999');
   });
 
   test('Throw error for string input (abc)', () => {
     const query = 'abc';
-    expect(() => convertIntegerToRoman(parseInt(query))).toThrow('Invalid input: Please provide a numeric value.');
+    expect(() => convertIntegerToRoman(parseInt(query))).toThrow('Invalid input NaN : Please provide a numeric value.');
   });
 
   test('Throw error for negative numbers (-1)', () => {
-    expect(() => convertIntegerToRoman(-1)).toThrow('Input must be between 1 and 3999');
+    expect(() => convertIntegerToRoman(-1)).toThrow('Input -1 must be between 1 and 3999');
   });
 
   test('Throw error for zero (0)', () => {
-    expect(() => convertIntegerToRoman(0)).toThrow('Input must be between 1 and 3999');
+    expect(() => convertIntegerToRoman(0)).toThrow('Input 0 must be between 1 and 3999');
   });
 
   test('Throw error for non-integer numbers (2.5)', () => {
-    expect(() => convertIntegerToRoman(2.5)).toThrow('Invalid input: Please provide a numeric value.');
+    expect(() => convertIntegerToRoman(2.5)).toThrow('Invalid input 2.5 : Please provide a numeric value.');
   });
 
   test('Throw error for null input', () => {
-    expect(() => convertIntegerToRoman(null)).toThrow('Invalid input: Please provide a numeric value.');
+    expect(() => convertIntegerToRoman(null)).toThrow('Invalid input null : Please provide a numeric value.');
   });
 
   test('Throw error for undefined input', () => {
-    expect(() => convertIntegerToRoman(undefined)).toThrow('Invalid input: Please provide a numeric value.');
+    expect(() => convertIntegerToRoman(undefined)).toThrow('Invalid input undefined : Please provide a numeric value.');
   });
 
   test('Throw error for object input', () => {
-    expect(() => convertIntegerToRoman({})).toThrow('Invalid input: Please provide a numeric value.');
+    expect(() => convertIntegerToRoman({})).toThrow(`Invalid input ${{}} : Please provide a numeric value.`);
   });
 
   test('Throw error for extremely large number', () => {
-    expect(() => convertIntegerToRoman(10000)).toThrow('Input must be between 1 and 3999');
+    expect(() => convertIntegerToRoman(10000)).toThrow('Input 10000 must be between 1 and 3999');
   });
 
   test('Throw error for extremely small number', () => {
-    expect(() => convertIntegerToRoman(-10000)).toThrow('Input must be between 1 and 3999');
+    expect(() => convertIntegerToRoman(-10000)).toThrow('Input -10000 must be between 1 and 3999');
   });
 
   // Performance test
