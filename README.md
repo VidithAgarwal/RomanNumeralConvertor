@@ -216,6 +216,8 @@ RomanConverter/
 │   ├── src/                  # React components and styles
 │   │   ├── components/       # Reusable React components
 │   │   ├── services/         # API integration logic
+|   |── .env                  # Environment variables for frontend
+|   |── Dockerfile            # The docker file for the client
 │   └── package.json          # Frontend dependencies
 ├── server/                   # Backend Express application
 │   ├── src/
@@ -224,8 +226,8 @@ RomanConverter/
 │   │   ├── middleware/       # Metrics and error handling
 │   │   ├── utils/            # Logging and validators
 │   │   └── tests/            # Unit and integration tests
-|   |── .env
-|   |── Dockerfile
+|   |── .env                  # Environment variables for server
+|   |── Dockerfile            # The docker file for the server
 │   ├── package.json          # Backend dependencies
 ├── prometheus.yml            # Prometheus configuration
 ├── docker-compose.yml        # Docker Compose configuration
@@ -235,14 +237,66 @@ RomanConverter/
 
 * * * * *
 
-**Dependency Attribution**
---------------------------
+## **Dependency Attribution**
 
--   **React**: [React Documentation](https://reactjs.org/)
--   **Adobe React Spectrum**: [React Spectrum Docs](https://react-spectrum.adobe.com/)
--   **Express.js**: [Express Documentation](https://expressjs.com/)
--   **Prometheus Client**: [Prometheus Node.js Client](https://github.com/siimon/prom-client)
--   **Winston**: [Winston Logger Documentation](https://github.com/winstonjs/winston)
+### **Frontend**
+
+- **React**:  
+  A popular JavaScript library for building user interfaces. Used for creating dynamic and responsive frontend components.  
+  [React Documentation](https://reactjs.org/)
+
+- **Adobe React Spectrum**:  
+  A UI library by Adobe for consistent design systems. Used for building visually appealing and accessible components like buttons, text fields, and progress indicators.  
+  [React Spectrum Docs](https://react-spectrum.adobe.com/)
+
+- **Vite**:  
+  A fast frontend toolchain optimized for modern web development. It’s used for bundling, hot module replacement (HMR), and efficient builds.  
+  [Vite Documentation](https://vitejs.dev/)
+
+---
+
+### **Backend**
+
+- **Express.js**:  
+  A minimal and flexible Node.js web application framework. Used to handle HTTP requests and provide APIs for the frontend.  
+  [Express Documentation](https://expressjs.com/)
+
+- **Prometheus Client (prom-client)**:  
+  A library for exposing application metrics in a format readable by Prometheus. Used for tracking metrics like HTTP requests, response times, and success rates.  
+  [Prometheus Node.js Client](https://github.com/siimon/prom-client)
+
+- **Winston**:  
+  A versatile and extensible logging library for Node.js. Used for capturing structured logs for debugging and error reporting.  
+  [Winston Logger Documentation](https://github.com/winstonjs/winston)
+
+---
+
+### **Testing and Development Tools**
+
+- **Jest**:  
+  A delightful JavaScript testing framework used for writing unit and integration tests. Provides an efficient and user-friendly testing experience.  
+  [Jest Documentation](https://jestjs.io/)
+
+- **ESLint**:  
+  A linter tool for identifying and fixing problems in JavaScript code. Ensures code consistency and quality throughout the project.  
+  [ESLint Documentation](https://eslint.org/)
+
+---
+
+### **Monitoring and Containerization**
+
+- **Prometheus**:  
+  An open-source system monitoring and alerting toolkit. Collects metrics from the application and visualizes them using queryable dashboards.  
+  [Prometheus Documentation](https://prometheus.io/)
+
+- **Docker**:  
+  A platform for containerizing and running the application in isolated environments. Ensures consistency across development, testing, and production.  
+  [Docker Documentation](https://docs.docker.com/)
+
+- **Docker Compose**:  
+  A tool for defining and running multi-container Docker applications. Used for orchestrating frontend, backend, and Prometheus services.  
+  [Docker Compose Documentation](https://docs.docker.com/compose/)
+
 
 * * * * *
 
