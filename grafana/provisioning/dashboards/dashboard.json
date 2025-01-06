@@ -1,0 +1,65 @@
+{
+    "title": "Roman Numeral Metrics Dashboard",
+    "tags": ["prometheus", "monitoring"],
+    "timezone": "browser",
+    "schemaVersion": 36,
+    "version": 0,
+    "panels": [
+      {
+        "title": "Total HTTP Requests",
+        "type": "timeseries",
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total[1m])) by (method, route, status)",
+            "legendFormat": "{{method}} {{route}} {{status}}",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "title": "Request Latency",
+        "type": "heatmap",
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[1m])) by (le))",
+            "refId": "B"
+          }
+        ]
+      },
+      {
+        "title": "Active Requests",
+        "type": "stat",
+        "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 },
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "active_requests",
+            "refId": "C"
+          }
+        ]
+      },
+      {
+        "title": "Successful vs Failed Conversions",
+        "type": "piechart",
+        "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 },
+        "datasource": "Prometheus",
+        "targets": [
+          {
+            "expr": "successful_conversions_total",
+            "legendFormat": "Successful",
+            "refId": "D"
+          },
+          {
+            "expr": "failed_conversions_total",
+            "legendFormat": "Failed",
+            "refId": "E"
+          }
+        ]
+      }
+    ]
+  }
+  
