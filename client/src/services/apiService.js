@@ -15,17 +15,13 @@ const fetchRomanNumeral = async (query) => {
       if (!response.ok) {
         // Parse the error message from the response body
         const errorData = await response.json();
-        throw new Error(errorData.error);
+        throw new Error(errorData.error || 'Unable to connect to the server. Please try again later.');
       }
   
       // Parse and return the JSON response
       return response.json();
-    } catch (error) {
-      // Log the error for debugging purposes (optional)
-      console.error('Error in fetchRomanNumeral:', error.message);
-      
-      // Re-throw the error for higher-level handling
-      throw error;
+    } catch (error) {      
+      throw new Error(error.message);
     }
   };
   

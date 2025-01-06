@@ -28,7 +28,7 @@ export const createError = (status, message) => {
  */
 const errorMiddleware = (err, req, res, next) => {
     logger.error('', { error: err.message });
-    res.status(err.status || 500).json({ error: err.message }); // Send a JSON response with the error message
+    res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' }); // Send a JSON response with the error message
   };
   
 export default errorMiddleware;
