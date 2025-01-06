@@ -250,7 +250,7 @@ RomanConverter/
   [React Documentation](https://reactjs.org/)
 
 - **Adobe React Spectrum**:  
-  A UI library by Adobe for consistent design systems. Used for building visually appealing and accessible components like buttons, text fields, and progress indicators.  
+  A UI library by Adobe for consistent design systems. Preferred for its ability to seamlessly create dark and light themes and make websites responsive with ease. It also provided an opportunity to learn about its powerful components, enhancing accessibility and design consistency.
   [React Spectrum Docs](https://react-spectrum.adobe.com/)
 
 - **Vite**:  
