@@ -2,6 +2,8 @@
 
 A full-stack web application designed to convert integers (1 to 3999) into Roman numerals. Built using React for the frontend and Node.js with Express for the backend, this project adheres to clean architecture principles, includes robust error handling, and provides monitoring via Prometheus metrics.
 
+**Access the live application at:** **[http://3.142.145.188/](http://3.142.145.188/)**
+
 ---
 
 ## **Table of Contents**
@@ -78,7 +80,7 @@ Ensure the following are installed:
     ```bash
 
 
-    cd roman-numeral-converter
+    cd RomanNumeralConvertor
 
     ```
 
@@ -125,6 +127,8 @@ VITE_API_URL=http://localhost:8080
 
     -   **Frontend**: <http://localhost:80>
     -   **Backend**: <http://localhost:8080>
+    -   **Prometheus**: <http://localhost:9090>
+    -   **Grafana**: <http://localhost:3000>
 
 4.  Stop the application:
 
@@ -283,11 +287,7 @@ RomanConverter/
 
 ---
 
-### **Monitoring and Containerization**
-
-- **Prometheus**:  
-  An open-source system monitoring and alerting toolkit. Collects metrics from the application and visualizes them using queryable dashboards.  
-  [Prometheus Documentation](https://prometheus.io/)
+### **Containerization**
 
 - **Docker**:  
   A platform for containerizing and running the application in isolated environments. Ensures consistency across development, testing, and production.  
@@ -296,6 +296,23 @@ RomanConverter/
 - **Docker Compose**:  
   A tool for defining and running multi-container Docker applications. Used for orchestrating frontend, backend, and Prometheus services.  
   [Docker Compose Documentation](https://docs.docker.com/compose/)
+
+
+## **Monitoring and Metrics**
+
+### **Grafana Dashboard**
+
+- Access Grafana at **[http://localhost:3000](http://localhost:3000)**.
+- A pre-configured dashboard named **"Roman Numeral Metrics Dashboard"** is available, which provides the following insights:
+  - **Total HTTP Requests**: Number of incoming requests to the backend.
+  - **Response Latency**: Distribution of response times.
+  - **Active Requests**: Currently processed requests.
+  - **Conversion Results**: A pie chart showing the ratio of successful and failed conversions.
+
+### **Prometheus Metrics**
+
+- Access raw metrics of the backend at **[http://localhost:8080/metrics](http://localhost:8080/metrics)**.
+- Query Prometheus monitoring at **[http://localhost:9090](http://localhost:9090)** for detailed data.
 
 
 * * * * *
