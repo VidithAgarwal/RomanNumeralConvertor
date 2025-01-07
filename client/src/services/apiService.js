@@ -10,18 +10,22 @@ const fetchRomanNumeral = async (query) => {
     try {
       // Make the API request with the query parameter
       const response = await fetch(`${baseUrl}/romannumeral?query=${query}`);
-      
       // Check if the response status is not OK (HTTP status 200–299)
       if (!response.ok) {
         // Parse the error message from the response body
         const errorData = await response.json();
+        
         throw new Error(errorData.error || 'Unable to connect to the server. Please try again later.');
       }
   
       // Parse and return the JSON response
       return response.json();
-    } catch (error) {      
-      throw new Error(error.message);
+    } catch (error) {    
+      if (error.name === 'TypeError') {
+        throw new Error('Unable to connect to the server. Please try again later.');
+      }
+
+      throw new Error(error.message || 'Something went wrong. Please try again.');
     }
   };
   
