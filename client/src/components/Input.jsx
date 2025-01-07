@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/RomanInput.css';
 import {
   TextField,
   Button,
@@ -22,6 +23,8 @@ const RomanInput = () => {
   const [error, setError] = useState('');
   // State to indicate if the API request is in progress
   const [isLoading, setIsLoading] = useState(false);
+  // State for triggering the shake animation
+  const [shake, setShake] = useState(false);
 
   // Handles the form submission
   const handleSubmit = async () => {
@@ -36,6 +39,15 @@ const RomanInput = () => {
     } finally {
       setInput(''); // Clear the input field
       setIsLoading(false); // Hide the loader
+    }
+  };
+
+  const handleInputChange = (value) => {
+    if (/^\d*$/.test(value)) {
+      setInput(value); // Accept valid input
+    } else {
+      setShake(true); // Trigger shake animation
+      setTimeout(() => setShake(false), 500); // Reset shake animation after 500ms
     }
   };
 
@@ -54,7 +66,7 @@ const RomanInput = () => {
       <Heading level={2} >Roman Numeral Converter</Heading>
 
       {/* Divider for separation */}
-      <Divider size="L"/>
+      <Divider size="L" />
 
       {/* Description for the converter */}
       <Well width="100%" maxWidth="size-4600" UNSAFE_style={{ textAlign: 'center', padding: 'clamp(8px, 2vw, 20px)', boxSizing: 'border-box' }}>
@@ -66,15 +78,20 @@ const RomanInput = () => {
       </Well>
 
       {/* Input field for user input */}
-      <TextField
-        label="Enter a Number"
-        value={input}
-        onChange={setInput}
-        isRequired
-        width="size-3600"
-        labelPosition="top"
-        validationState={error ? 'invalid' : undefined} // Mark as invalid if there's an error
-      />
+      {/* <div className={`text-field-container ${shake ? 'shake' : ''}`}> */}
+        <TextField
+          label="Enter a Number"
+          value={input}
+          onChange={(value) => {
+            handleInputChange(value);
+          }}
+          UNSAFE_className={`text-field-container ${shake ? 'shake' : ''}`}
+          isRequired
+          width="size-3600"
+          labelPosition="top"
+          validationState={error ? 'invalid' : undefined} // Mark as invalid if there's an error
+        />
+      {/* </div> */}
 
       {/* Button to submit the conversion request */}
       <Button
