@@ -2,6 +2,7 @@ import express from 'express';
 import  cors from 'cors';
 import bodyParser from 'body-parser';
 import errorMiddleware from './middleware/errorMiddleware.js';
+import notFound from './middleware/notFound.js';
 import romanConvertorRoute from './routes/romanConvertorRoute.js';
 import { metricsMiddleware, metricsRoute } from './middleware/metrics.js';
 
@@ -28,6 +29,8 @@ app.get('/metrics', metricsRoute);
 
 // Roman numeral conversion route
 app.use('/romannumeral', romanConvertorRoute);
+
+app.use(notFound);
 
 // Error handling middleware
 app.use(errorMiddleware);

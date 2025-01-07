@@ -131,4 +131,13 @@ describe('Integration Tests for Roman Numeral API', () => {
       'Invalid input 3e2 : Please provide a numeric value.'
     );
   });
+
+  it('should return a 404 error for route that doesn\'t exist', async () => {
+    const response = await request(app).get('/');
+    expect(response.status).toBe(404);
+    expect(response.body).toHaveProperty(
+      'error',
+      "Route not found"
+    );
+  });
 });
